@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+    <meta charset="UTF-8">
+    <title>Cafes & Wifi</title>
+</head>
+<body>
+<nav class="navbar fixed-top bg-body-tertiary mb-40px" style="background-image: url('../static/assets/img/home-bg.jpg')">
+    <div class="container-fluid">
+        <p style="color:white">Your cafes ☕️</p>
+     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="{{url_for('home')}}" class="nav-link px-2 text-white">Home</a></li>
+          <li><a href="{{url_for('post_new_cafe')}}" class="nav-link px-2 text-white">Add Cafe</a></li>
+        </ul>
+
+        <form  method="post" action="{{url_for('search_cafe')}}"class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input type="search" name="location" class="form-control" placeholder="Search cafe by location" aria-label="Search">
+        </form>
+      </div>
+  </div>
+</nav>
+</body>
+</html>

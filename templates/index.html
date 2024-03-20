@@ -1,0 +1,49 @@
+{% include "header.html" %}
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./static/css/styles.css">
+</head>
+<body>
+     <div>
+     {% if cafes %}
+        {% for cafe in cafes %}
+        <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+          <div class="col-10 col-sm-8 col-lg-6">
+            <img src={{cafe.img_url}} class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="600" height="400" loading="lazy">
+          </div>
+          <div class="col-lg-6">
+              <h2>{{cafe.name}}</h2>
+            <p>
+                <a href={{cafe.map_url}} > <img src='./static/assets/img/geo-alt.svg' height="30">{{cafe.location}}</a>
+            </p>
+            {% if cafe.has_wifi == 1 %}
+              <p><img src="./static/assets/img/wifi.svg" height="30"></p>
+            {% else %}
+              <p><img src="./static/assets/img/wifi-off.svg" height="30"></p>
+            {% endif %}
+            {% if cafe.has_sockets >= 1 %}
+              <p><img src="./static/assets/img/battery-charging.svg" height="30"></p>
+            {% endif %}
+            <p> <img src="./static/assets/img/cup-hot.svg" height="30">Coffee price: {{cafe.coffee_price}}</p>
+            <p>Seats: {{cafe.seats}}</p>
+            {% if cafe.has_toilet == 1 %}
+              <p>
+                  <img src="./static/assets/img/badge-wc.svg" height="20">
+              </p>
+            {% endif %}
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+              <a href="{{url_for('update_price', cafe_id=cafe.id)}}" class="btn btn-outline-secondary btn-lg px-4" style="background-color:#8B4513">Edit Coffee Price</a>
+              <a href="{{url_for('delete_cafe',cafe_id=cafe.id)}}" class="btn btn-outline-secondary btn-lg px-4" >Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+    {% else %}
+         <h6>Sorry, there are not any cafe at this location...</h6>
+    {% endif %}
+     </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+{% include "footer.html" %}
